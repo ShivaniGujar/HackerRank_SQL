@@ -12,3 +12,10 @@ Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from 
                             SELECT city
                             FROM station
                             WHERE  SUBSTR (CITY,1,1) IN ('A','E','I','O','U');
+
+
+Sometimes it need to convert lower
+
+SELECT city
+FROM station
+WHERE  LOWER(SUBSTR (CITY,1,1)) IN ('A','E','I','O','U');
