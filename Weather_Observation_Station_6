@@ -1,0 +1,14 @@
+Weather Observation Station 6
+
+Concept Using:   LIKE (mysql)  Substr(oracle 
+
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
+
+####### SOLUTION 1  mysql #####:    SELECT city
+                              FROM station
+                              WHERE city LIKE 'A%' or city LIKE 'E%' or city LIKE 'I%' or city LIKE 'O%' or city LIKE 'U%';
+
+###### SOLUTION 2  oracle######:
+                            SELECT city
+                            FROM station
+                            WHERE  SUBSTR (CITY,1,1) IN ('A','E','I','O','U');
