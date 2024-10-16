@@ -1,0 +1,23 @@
+Weather_Observation_Station_9
+
+Query the list of CITY names from STATION that do not start with vowels. Your result cannot contain duplicates.
+
+#### Solution 1 MYSQL:
+                 (I)  SELECT DISTINCT(city)
+                      FROM station
+                      WHERE city NOT REGEXP '^[aeiouAEIOU]';
+
+                        ^[aeiouAEIOU]: This regular expression checks if the city name starts with a vowel (lowercase or uppercase).
+                        NOT REGEXP: Ensures that cities whose names do not start with any vowel are selected.
+
+                (II)  SELECT DISTINCT(city)
+                      FROM station
+                      WHERE city  REGEXP '^[^aeiouAEIOU]';
+
+                      ^[^aeiouAEIOU]: This regular expression matches city names that start with any character except vowels (both lowercase and uppercase).
+
+#### Solution 2 Oracle: 
+
+                        SELECT DISTINCT(city)
+                        FROM station
+                        WHERE  LOWER(SUBSTR(city,1,1)) NOT IN ('a', 'e', 'i', 'o', 'u');
