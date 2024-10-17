@@ -1,0 +1,87 @@
+Weather_Observation_Station_12
+
+1. ##### Solution MYSQL With NOT:
+                                                        
+                                                        SELECT DISTINCT(city)
+                                                        FROM station
+                                                        WHERE city NOT REGEXP '^[AEIOUaeiou]'  AND city NOT REGEXP '[AEIOUaeiou]$';
+ Explanation :
+                                                
+                                                1. SELECT DISTINCT(city):
+                                                This selects unique city names from the station table.
+                                                2. WHERE city NOT REGEXP '^[AEIOUaeiou]':
+                                                ^: This is an anchor that matches the start of the string.
+                                                [AEIOUaeiou]: This character set matches any vowel (both uppercase and lowercase).
+                                                NOT REGEXP '^[AEIOUaeiou]': This condition checks that the city name does not start with a vowel.
+                                                3. AND city NOT REGEXP '[AEIOUaeiou]$':
+                                                [AEIOUaeiou]: Again, this character set matches any vowel (both uppercase and lowercase).
+                                                $: This is an anchor that matches the end of the string.
+                                                NOT REGEXP '[AEIOUaeiou]$': This condition checks that the city name does not end with a vowel.
+
+2 ##### Solution MYSQL Without NOT:
+                                                      
+                                                      SELECT DISTINCT(city)
+                                                      FROM station
+                                                      WHERE city  REGEXP '^[^AEIOUaeiou]'  AND city  REGEXP '[^AEIOUaeiou]$';
+
+Explanation:   
+                                                
+                                                1. SELECT DISTINCT(city):
+                                                This part selects unique city names from the station table.
+                                                2. WHERE city REGEXP '^[^AEIOUaeiou]':
+                                                ^: This is an anchor that matches the start of the string.
+                                                [^AEIOUaeiou]: This is a negated character set that matches any character that is not a vowel (both uppercase and lowercase).
+                                                So, REGEXP '^[^AEIOUaeiou]' checks if the city name starts with a consonant (or any non-vowel character).
+                                                3. AND city REGEXP '[^AEIOUaeiou]$':
+                                                [^AEIOUaeiou]: Again, this is a negated character set that matches any character that is not a vowel.
+                                                $: This is an anchor that matches the end of the string.
+                                                So, REGEXP '[^AEIOUaeiou]$' checks if the city name ends with a consonant (or any non-vowel character).
+
+
+3 ###### Solution Oracle Substr():
+                                                          
+                                                          select distinct city
+                                                          from station
+                                                          where lower(substr(city,1,1)) not in ('a','e','i','o','u') and 
+                                                                      lower(substr(city,-1)) not in ('a','e','i','o','u') ;
+
+Explanation  :                               
+                                                      1. SELECT DISTINCT city:
+                                                      This part selects unique city names from the station table.
+                                                      2. WHERE lower(substr(city, 1, 1)) NOT IN ('a', 'e', 'i', 'o', 'u'):
+                                                      substr(city, 1, 1):
+                                                      This function extracts the first character of the city name.
+                                                      lower(...):
+                                                      This converts the extracted character to lowercase to ensure a case-insensitive comparison.
+                                                      NOT IN ('a', 'e', 'i', 'o', 'u'):
+                                                      This condition checks if the first character is not one of the vowels ('a', 'e', 'i', 'o', 'u').
+                                                      This part ensures that the city name does not start with a vowel.
+                                                      3. AND lower(substr(city, -1)) NOT IN ('a', 'e', 'i', 'o', 'u'):
+                                                      substr(city, -1):
+                                                      This function extracts the last character of the city name. The negative index -1 specifies that it should take the last character.
+                                                      lower(...):
+                                                      This converts the extracted character to lowercase.
+                                                      NOT IN ('a', 'e', 'i', 'o', 'u'):
+                                                      This condition checks if the last character is not one of the vowels ('a', 'e', 'i', 'o', 'u').
+                                                      This part ensures that the city name does not end with a vowel.
+                                                      
+                                                      
+                                                      
+4.##############Solution Oracle REGEXP_lIKE:
+
+                                                      select distinct(city)
+                                                      from station
+                                                      where REGEXP_LIKE(CITY,'^[^AEIOUaeiou].*[^AEIOUaeiou]$');
+
+Explanation :
+
+                                                SELECT DISTINCT(city):
+                                                
+                                                This part selects unique city names from the station table.
+                                                WHERE REGEXP_LIKE(CITY, '^[^AEIOUaeiou].*[^AEIOUaeiou]$'):
+                                                
+                                                ^: Anchors the match to the start of the string.
+                                                [^AEIOUaeiou]: This is a negated character set that matches any character that is not a vowel (both uppercase and lowercase).
+                                                .*: This matches any sequence of characters (zero or more) in between.
+                                                [^AEIOUaeiou]$: This matches any character that is not a vowel at the end of the string.
+                                                Together, this means the string must start with a consonant and end with a consonant.
