@@ -1,0 +1,37 @@
+Weather_Observation_Station_10
+Query the list of CITY names from STATION that do not end with vowels. Your result cannot contain duplicates.
+
+########## Solution MYSQL :   (I)
+                                SELECT DISTINCT(city)
+                                FROM station
+                                WHERE CITY not REGEXP '[aeiouAEIOU]$';
+
+SELECT DISTINCT(city): This selects unique city names from the station table.
+
+WHERE CITY NOT REGEXP '[aeiouAEIOU]$': This part applies a condition to filter city names. Here's how it works:
+
+REGEXP '[aeiouAEIOU]$': This regular expression checks if the city name ends with a vowel ($ denotes the end of a string). The pattern [aeiouAEIOU] matches any vowel (both lowercase and uppercase).
+NOT REGEXP '[aeiouAEIOU]$': The NOT keyword negates the regular expression match, meaning it selects cities whose names do not end with a vowel.
+
+                                  (II)
+                                      SELECT DISTINCT(city)
+                                      FROM station
+                                      WHERE CITY  REGEXP '[^aeiouAEIOU]$';
+ the REGEXP '[^aeiouAEIOU]$' pattern ensures that only city names whose last character is not a vowel (i.e., ends with a consonant or other non-vowel characters) are selected.
+
+########## Solution Oracle:  
+                                          SELECT distinct(city)
+                                          FROM station
+                                          WHERE SUBSTR(city,-1,1) NOT IN ('a','e','i','o','u');
+
+SELECT DISTINCT(city): This selects unique (distinct) city names from the station table.
+
+SUBSTR(city, -1, 1):
+
+SUBSTR() is a function used to extract a substring from a string.
+In this case, city is the string (city name), -1 is the starting position from the end of the string (negative index), and 1 specifies that only 1 character will be extracted.
+So, SUBSTR(city, -1, 1) extracts the last character of the city's name.
+NOT IN ('a','e','i','o','u'):
+
+This checks if the extracted last character is not one of the vowels ('a', 'e', 'i', 'o', 'u').
+Since the function checks for lowercase vowels, the query only filters cities whose names do not end with a lowercase vowel.
