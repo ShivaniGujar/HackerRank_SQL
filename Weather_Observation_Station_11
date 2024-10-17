@@ -1,0 +1,70 @@
+Weather_Observation_Station_11
+Query the list of CITY names from STATION that either do not start with vowels or do not end with vowels. Your result cannot contain duplicates.
+
+########### solution MYSQL :
+                                  
+                                  SELECT DISTINCT(CITY)
+                                  FROM station
+                                  WHERE CITY  not REGEXP '^[AEIOUaeiou]' OR CITY  NOT REGEXP '[AEIOUaeiou]$';
+
+^##1. SELECT DISTINCT(CITY):
+                            This selects unique (distinct) city names from the station table.
+##2. WHERE CITY NOT REGEXP '^[AEIOUaeiou]':
+                            ^ in the regular expression is an anchor that matches the start of the string.
+                            [AEIOUaeiou] is a character set that matches any vowel (both uppercase and lowercase).
+                            NOT REGEXP '^[AEIOUaeiou]' means the city name does not start with a vowel (i.e., it starts with a consonant or some other character).
+##3. OR CITY NOT REGEXP '[AEIOUaeiou]$':
+                            $ in the regular expression matches the end of the string.
+                            [AEIOUaeiou] matches any vowel (both uppercase and lowercase).
+                            NOT REGEXP '[AEIOUaeiou]$' means the city name does not end with a vowel (i.e., it ends with a consonant or some other character).
+
+
+############ sOLUTION mysqL without using NOT:
+                                                    
+                                                    SELECT DISTINCT(CITY)
+                                                    FROM station
+                                                    WHERE CITY   REGEXP '^[^AEIOUaeiou]' OR CITY   REGEXP '[^AEIOUaeiou]$';
+                                                    
+
+
+####### Solution in Oracle:
+                                                                
+                                                                SELECT DISTINCT(CITY)
+                                                                FROM station
+                                                                WHERE REGEXP_LIKE (CITY,'^[^AEIOUaeiou]|[^AEIOUaeiou]$');
+ WHERE REGEXP_LIKE (CITY, '^[^AEIOUaeiou]|[^AEIOUaeiou]$'):
+REGEXP_LIKE: This function checks if the string matches a specified regular expression pattern.
+
+'^[^AEIOUaeiou]':
+
+^: Anchors the match to the start of the string.
+[^AEIOUaeiou]: This is a negated character set that matches any character that is not a vowel (neither uppercase nor lowercase).
+So, this part checks if the city name starts with a consonant or any non-vowel character.
+|: This is the logical OR operator in regular expressions.
+
+'[^AEIOUaeiou]$':
+
+[^AEIOUaeiou]: Matches any character that is not a vowel.
+$: Anchors the match to the end of the string.
+
+############ Solution in Oracle:
+                                                                      
+                                                                      select distinct city
+                                                                      from station
+                                                                      where lower(substr(city,1,1)) not in ('a','e','i','o','u') or 
+                                                                                  lower(substr(city,-1)) not in ('a','e','i','o','u') ;
+
+1. SELECT DISTINCT city:
+This part selects unique (distinct) city names from the station table.
+2. WHERE lower(substr(city, 1, 1)) NOT IN ('a', 'e', 'i', 'o', 'u'):
+lower(substr(city, 1, 1)):
+substr(city, 1, 1): This function extracts the first character of the city name.
+lower(...): This converts the extracted character to lowercase to ensure a case-insensitive comparison.
+NOT IN ('a', 'e', 'i', 'o', 'u'): This checks if the first character is not one of the vowels ('a', 'e', 'i', 'o', 'u').
+This condition ensures that the city name does not start with a vowel.
+3. OR lower(substr(city, -1)) NOT IN ('a', 'e', 'i', 'o', 'u'):
+lower(substr(city, -1)):
+substr(city, -1): This function extracts the last character of the city name (the negative index -1 specifies the last character).
+lower(...): This converts the extracted character to lowercase.
+NOT IN ('a', 'e', 'i', 'o', 'u'): This checks if the last character is not one of the vowels ('a', 'e', 'i', 'o', 'u').
+This condition ensures that the city name does not end with a vowel.
