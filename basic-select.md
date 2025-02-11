@@ -239,10 +239,11 @@ select city, length(city) from station order by length(city) DESC,city ASC fetch
 select city, length(city) from station order by length(city) asc ,city asc fetch first row only;
 
 OR
-SELECT city, length(city)
-FROM STATION 
-ORDER BY length(city) desc
-LIMIT 1;    
+SELECT city, length(city) FROM Station ORDER BY length(city) ASC,city ASC LIMIT 1;
+SELECT city, length(city) FROM Station ORDER BY length(city) DESC,city ASC LIMIT 1;
+
+
+    
 ```
 
 ###**[Weather Observation Station 6](https://www.hackerrank.com/challenges/weather-observation-station-6)**
