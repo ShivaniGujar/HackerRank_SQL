@@ -503,6 +503,18 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 **Solution**
 ```sql
+
+SELECT DISTINCT city FROM STATION
+WHERE  city NOT REGEXP '^[aeiouAEIOU]'
+AND city NOT REGEXP '[aeiouAIEOU]$';
+
+OR
+SELECT DISTINCT city FROM STATION
+WHERE  SUBSTR(city,1,1) NOT IN  ('a','e','i','o','u')
+AND SUBSTR(city,length(city),1) NOT IN  ('a','e','i','o','u') ;
+
+OR
+
 SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') AND LOWER(SUBSTR(CITY,LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
 ```
 
