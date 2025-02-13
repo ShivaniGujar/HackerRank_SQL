@@ -370,6 +370,30 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
 ('a','e','i','o','u');
 
+OR
+
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE CITY NOT REGEXP '^[AEIOUaeiou]';
+
+
+OR
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE UPPER(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U');
+
+OR
+
+
+SELECT DISTINCT city 
+FROM station 
+WHERE city NOT LIKE 'a%' 
+AND city NOT LIKE 'e%' 
+AND city NOT LIKE 'i%' 
+AND city NOT LIKE 'o%' 
+AND city NOT LIKE 'u%';
+
+
 
 ```
 **Explanation**
