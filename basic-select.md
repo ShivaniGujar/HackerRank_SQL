@@ -354,8 +354,15 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 **Solution**
 ```sql
 SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
-('a','e','i','o','u');     
+('a','e','i','o','u');
+
+OR 
+
+SELECT DISTINCT city FROM   station
+WHERE city REGEXP '[aeiou]$';
 ```
+**Explanation**
+REGEXP (short for Regular Expression) is used in MySQL to perform pattern matching within text data. It allows complex search patterns beyond what LIKE can achieve.
 
 ###**[Weather Observation Station 10](https://www.hackerrank.com/challenges/weather-observation-station-10/problem)**
 
@@ -374,6 +381,7 @@ The STATION table is described as follows:
 | LONG_W | NUMBER |
 
 where LAT_N is the northern latitude and LONG_W is the western longitude.
+
 
 **Solution**
 ```sql
