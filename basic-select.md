@@ -238,10 +238,6 @@ PQRS 4
 
 When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WXY, with the respective lengths 3,3,4,3,3,4, and 33. The longest-named city is obviously PQRS, but there are 33 options for shortest-named city; we choose ABC, because it comes first alphabetically.
 
-in QUERY 3:Here:
-LEFT(city,1): Extracts the first letter of the city.
-LOWER(...): Converts that first letter to lowercase.
-IN ('a','e','i','o','u'): Checks if the first letter is a vowel.
 
 **Solution**
 ```sql
@@ -251,14 +247,7 @@ select city, length(city) from station order by length(city) asc ,city asc fetch
 OR
 SELECT city, length(city) FROM Station ORDER BY length(city) ASC,city ASC LIMIT 1;
 SELECT city, length(city) FROM Station ORDER BY length(city) DESC,city ASC LIMIT 1;
-
-
-OR
-SELECT DISTINCT city FROM Station
-WHERE lower(left(city,1)) IN ('a','e','i','o','u');
-
-
-    
+  
 ```
 
 ###**[Weather Observation Station 6](https://www.hackerrank.com/challenges/weather-observation-station-6)**
@@ -279,6 +268,11 @@ The STATION table is described as follows:
 
 where LAT_N is the northern latitude and LONG_W is the western longitude.
 
+in QUERY 3:Here:
+LEFT(city,1): Extracts the first letter of the city.
+LOWER(...): Converts that first letter to lowercase.
+IN ('a','e','i','o','u'): Checks if the first letter is a vowel.
+
 **Solution**
 ```sql
 SELECT DISTINCT city FROM Station
@@ -288,7 +282,12 @@ city LIKE 'o%' OR city LIKE 'u%';
 OR
 
 SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE 'A%' OR CITY LIKE 'E%' OR CITY LIKE 'I%' OR CITY LIKE 'O%' 
-OR CITY LIKE 'U%' ORDER BY CITY ASC;       
+OR CITY LIKE 'U%' ORDER BY CITY ASC;
+
+OR
+
+SELECT DISTINCT city FROM Station
+WHERE lower(left(city,1)) IN ('a','e','i','o','u');    
 ```
 
 ###**[Weather Observation Station 7](https://www.hackerrank.com/challenges/weather-observation-station-7)**
