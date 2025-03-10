@@ -173,7 +173,12 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 **Solution**
 ```sql
-SELECT DISTINCT CITY FROM STATION WHERE MOD(ID,2)=0 ORDER BY CITY ASC;       
+SELECT DISTINCT CITY FROM STATION WHERE MOD(ID,2)=0 ORDER BY CITY ASC;
+
+OR
+
+SELECT  DISTINCT city FROM station 
+WHERE id % 2 = 0;     
 ```
 
 ###**[Weather Observation Station 4](https://www.hackerrank.com/challenges/weather-observation-station-4)**
