@@ -558,9 +558,24 @@ Explanation
 
 Only Ashley, Julia, and Belvet have Marks > 75. If you look at the last three characters of each of their names, there are no duplicates and 'ley' < 'lia' < 'vet'.
 
+ ## The RIGHT() function extracts a number of characters from a string (starting from right).
+Syntax
+RIGHT(string, number_of_chars)
 **Solution**
 ```sql
-SELECT NAME FROM STUDENTS WHERE MARKS > 75 ORDER BY SUBSTR(NAME, LENGTH(NAME)-2, 3), ID;    
+SELECT NAME FROM STUDENTS WHERE MARKS > 75 ORDER BY SUBSTR(NAME, LENGTH(NAME)-2, 3), ID;
+
+//ORACLE as well as MYSQL
+SELECT name FROM students
+WHERE marks> 75
+ORDER BY SUBSTR(name,-3,3),
+ID ASC;
+
+//MYSQL
+SELECT name FROM students
+WHERE marks> 75
+ORDER BY RIGHT(name,3),
+ID ASC;
 ```
 
 ###**[Employee Names](https://www.hackerrank.com/challenges/name-of-employees/problem)**
