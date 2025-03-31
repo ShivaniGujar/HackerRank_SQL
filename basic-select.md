@@ -343,8 +343,20 @@ SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE '%a' OR CITY LIKE '%e' OR CIT
 OR CITY LIKE '%u';
 
 OR
+SELECT DISTINCT city FROM station
+WHERE lower(right(city,1)) IN ('a','e','i','o','u');
+
+The RIGHT() function extracts a number of characters from a string (starting from right).
+Syntax
+RIGHT(string, number_of_chars
+
+
+OR
+SELECT DISTINCT city FROM station
+WHERE lower(SUBSTR(city,-1,1)) IN ('a','e','i','o','u');
 
 OR 
+
 
 SELECT DISTINCT city FROM   station
 WHERE city REGEXP '[aeiou]$';
