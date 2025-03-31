@@ -412,14 +412,13 @@ where LAT_N is the northern latitude and LONG_W is the western longitude.
 
 **Solution**
 ```sql
-SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
-('a','e','i','o','u');
-
-OR
-
 
 SELECT DISTINCT CITY FROM STATION 
 WHERE CITY NOT REGEXP '^[AEIOUaeiou]';
+
+Or
+SELECT DISTINCT CITY FROM STATION 
+WHERE city REGEXP '^[^aeiou]';
 
 
 OR
@@ -428,7 +427,14 @@ SELECT DISTINCT CITY FROM STATION
 WHERE UPPER(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U');
 
 OR
+SELECT DISTINCT CITY FROM STATION 
+WHERE UPPER(left(city,1)) NOT IN ('a','e','i','o','u');
 
+OR
+SELECT DISTINCT CITY FROM STATION WHERE upper(SUBSTR(CITY,1,1)) NOT IN ('A','E','I','O','U') AND lower(SUBSTR(CITY,1,1)) NOT IN
+('a','e','i','o','u');
+
+OR
 
 SELECT DISTINCT city 
 FROM station 
@@ -477,20 +483,31 @@ AND city NOT LIKE '%u';
 
 OR
 
-
-SELECT DISTINCT city 
-FROM station 
-WHERE city NOT REGEXP '[aeiou]$';
+SELECT DISTINCT city FROM station
+WHERE city NOT REGEXP '[aeiou]$' ;
 
 OR
 
-SELECT DISTINCT city 
-FROM station 
+SELECT DISTINCT city FROM station
+WHERE city REGEXP '[^aeiou]$' ;
+
+OR
+
+SELECT DISTINCT city FROM station
+WHERE  right(city,1) NOT IN ('a','e','i','o','u') ;
+
+OR
+SELECT DISTINCT city FROM station
+WHERE  SUBSTR(city,-1,1) NOT IN ('a','e','i','o','u') ;
+
+OR
+SELECT DISTINCT city FROM station 
 WHERE SUBSTR(city,length(city),1) NOT IN ('a','e','i','o','u');
 
 OR
 
-SELECT DISTINCT CITY FROM STATION WHERE UPPER(SUBSTR(CITY, LENGTH(CITY), 1)) NOT IN ('A','E','I','O','U') AND LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
+SELECT DISTINCT CITY FROM STATION
+ WHERE UPPER(SUBSTR(CITY, LENGTH(CITY), 1)) NOT IN ('A','E','I','O','U') AND LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');    
 ```
 
 ###**[Weather Observation Station 11](https://www.hackerrank.com/challenges/weather-observation-station-11/problem)**
