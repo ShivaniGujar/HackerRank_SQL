@@ -288,6 +288,10 @@ SELECT DISTINCT(CITY) FROM STATION WHERE CITY LIKE 'A%' OR CITY LIKE 'E%' OR CIT
 OR CITY LIKE 'U%' ORDER BY CITY ASC;
 
 OR
+SELECT  DISTINCT city FROM station
+WHERE city REGEXP '^[aeiou]';
+
+OR
 
 SELECT DISTINCT city FROM Station
 WHERE lower(left(city,1)) IN ('a','e','i','o','u');    
