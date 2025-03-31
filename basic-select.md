@@ -541,6 +541,10 @@ WHERE  city NOT REGEXP '^[aeiouAEIOU]'
 OR city NOT REGEXP '[aeiouAIEOU]$';
 
 OR
+SELECT  DISTINCT city FROM station
+WHERE city   REGEXP '^[^aeiou]' OR city  REGEXP '[^aeiou]$';
+
+OR
 
 SELECT DISTINCT CITY FROM STATION WHERE LOWER(SUBSTR(CITY,1,1)) NOT IN ('a','e','i','o','u') OR LOWER(SUBSTR(CITY, LENGTH(CITY),1)) NOT IN ('a','e','i','o','u');   
 ```
