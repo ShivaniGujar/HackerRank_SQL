@@ -294,7 +294,29 @@ WHERE city REGEXP '^[aeiou]';
 OR
 
 SELECT DISTINCT city FROM Station
-WHERE lower(left(city,1)) IN ('a','e','i','o','u');    
+WHERE lower(left(city,1)) IN ('a','e','i','o','u');
+
+
+WHERE lower(left(city,1)) IN ('a','e','i','o','u')
+left(city,1) extracts the first letter of the city name.
+lower(...) converts it to lowercase to ensure case insensitivity.
+IN ('a','e','i','o','u') checks if the first letter is a vowel.
+The LEFT() function extracts a number of characters from a string (starting from left).
+Syntax
+LEFT(string, number_of_chars)
+
+
+OR
+
+SELECT DISTINCT city 
+FROM Station
+WHERE lower(SUBSTRING(city, 1, 1)) IN ('a','e','i','o','u');
+
+The SUBSTRING() function extracts some characters from a string.
+
+Syntax
+SUBSTRING(string, start, length)
+
 ```
 
 ###**[Weather Observation Station 7](https://www.hackerrank.com/challenges/weather-observation-station-7)**
