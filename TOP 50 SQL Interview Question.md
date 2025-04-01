@@ -71,7 +71,37 @@ GROUP BY dept_id;
 
 **Explanation**:
 
-Either you can explain Even or Odd numbers of record
+Either you can explain Even or Odd numbers of record.
+**pseudocolumn** , does not have physical storage but ***assign nd read only*** function behaves like a table column, but is not actually stored in the table. 
+You can select from pseudocolumns, but you cannot insert, update, or delete their values.
+
+1️⃣ What is ROWNUM?
+ROWNUM is a pseudocolumn in Oracle SQL that assigns a unique row number before sorting the data.
+It does not store values physically in the table.
+It is read-only and automatically generated when the query is executed.
+
+```sql
+
+/* TO diplay odd records*/
+
+SELECT * FROM (
+    SELECT empno, ename, sal, ROWNUM AS rn
+    FROM employee 
+    ORDER BY empno  -- Ensure a consistent order
+) 
+WHERE MOD(rn, 2) != 0; -- Select odd-numbered rows
+
+/* TO diplay Even records*/
+
+SELECT * FROM (
+    SELECT empno, ename, sal, ROWNUM AS rn
+    FROM employee 
+    ORDER BY empno  -- Ensure a consistent order
+) 
+WHERE MOD(rn, 2) = 0; -- Select even-numbered rows
+
+
+```
 
 
 
