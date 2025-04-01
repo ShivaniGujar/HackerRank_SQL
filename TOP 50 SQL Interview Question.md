@@ -1,21 +1,79 @@
 # 1.  Find Second Highest Salary of an Employee
-Explanation:
+**Explanation**:
 
-***Approach 1: Subquery Approch with NOT IN***
+
 
 Here first we are creating resultset  excluding first highest salary using i.e max(salary),
 again applying max(salary) on this result would fetch second highest salary
 
 ```sql
+/*Approach 1: Subquery Approch with NOT IN*/
+
 SELECT max(sal) FROM employee
 WHERE sal NOT IN (SELECT max(sal) FROM employee);
+
+/*Approach 2 : Subquery with < operator*/
+
+ SELECT max(sal) FROM emp
+   WHERE sal <(SELECT max(sal) FROM employee);
  ```
 
-***Approach 2 : Subquery with < operator***
+***Optimizes Approach***
+
+Instead of using MAX(), you can use ORDER BY with LIMIT or OFFSET (if supported by your SQL database).
+
+
 
 ```sql
-   SELECT max(sal) FROM emp
-   WHERE sal <(SELECT max(sal) FROM employee);
+/*Approach 1: Using LIMIT with OFFSET (MySQL, PostgreSQL)  ,
+The OFFSET clause tells SQL to skip a certain number of rows before starting to return results.
+LIMIT 1 OFFSET 1	Returns the second highest salary.
+LIMIT 1 OFFSET 2	Returns the third highest salary.*/
+
+SELECT DISTINCT sal 
+FROM employee
+ORDER BY sal DESC 
+LIMIT 1 OFFSET 1;
+
 ```
+
+
+# 2. Display the highest paid employee in each department ?
+
+**Explanation**:
+
+we need to group employees by department and find the maximum salary within each department.
+
+```sql
+/*when using GROUP by clause then not allow to use any other column in select
+ONLY suppose to use aggregate function followed by column that seggreagating*/
+
+SELECT  MAX(sal),dept_id,
+FROM employee 
+GROUP BY dept_id;
+
+/* Display the lowest paid employee in each department ?*/
+
+SELECT min(sal),dept_id
+FROM employee
+GROUP BY dept_id;
+
+/*Find no of employee present in each department */
+
+
+SELECT COUNT(ename),dept_id
+FROM employee
+GROUP BY dept_id;
+
+```
+
+# 3. Display alternate records in SQL
+
+**Explanation**:
+
+Either you can explain Even or Odd numbers of record
+
+
+
 
 
