@@ -104,6 +104,30 @@ WHERE MOD(rn, 2) = 0; -- Select even-numbered rows
 
 ```
 
+# 4. Find duplicate values and it's frequency of a column
+
+**Explanation**:
+frequency means how many times it appear so use count() for that, seggreagte the data on ename so use GROUP BY clause 
+SELECT ename, COUNT(*) -->Selects the ename column (employee name) and counts the occurrences of each name in the emp table.
+FROM emp-->Specifies the table from which data is retrieved.
+GROUP BY ename-->Groups the records by the ename column, meaning all rows with the same employee name will be aggregated.
+HAVING COUNT(*) > 1  -->Filters the grouped results, retaining only those names that appear more than once.
+
+```sql
+SELECT ename,COUNT(*)
+FROM emp
+GROUP BY ename
+HAVING COUNT(*)> 1;
+
+
+/* arrange the data based on incresing order frequency*/
+SELECT ename,COUNT(*)
+FROM emp
+GROUP BY ename
+ORDER BY COUNT(*);
+
+```
+
 
 
 
