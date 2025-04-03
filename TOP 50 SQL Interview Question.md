@@ -242,3 +242,55 @@ WHERE ename LIKE 'J%S';
 
 # 7. Display nth row in sql 
 
+
+Might ask to find 2nd row in table ,or 10th row in table
+
+***ORACLE***
+ROWNUM is not work greater than > and is equal to (= ) operator
+if we want to display 4th record  using rownum we use minus 
+```sql
+
+/*Oracle use ROWNUM :
+SELECT * FROM emp WHERE ROWNUM <= 4: Retrieves the first 4 rows from the emp table.
+SELECT * FROM emp WHERE ROWNUM <= 3: Retrieves the first 3 rows from the emp table.
+MINUS: Subtracts the second query's result from the first, leaving only the 4th row
+ */
+
+SELECT * FROM emp
+WHERE ROWNUM <=4
+MINUS
+SELECT * FROM emp
+WHERE ROWNUM <=3;
+
+OR
+/*alias create for rownum so we can work with = */
+SELECT * FROM
+(SELECT ROWNUM AS r , ename, sal FROM emp)
+WHERE r=4;
+
+
+/*if want to display all column*/
+SELECT * FROM
+(SELECT ROWNUM AS r,emp.* FROM emp)
+WHERE r=4;
+
+/*if want to display record in 2nd ,3th and 7th records i.e display any random records */
+SELECT * FROM
+(SELECT ROWNUM AS r,emp.* FROM emp)
+WHERE r in(2,3,7);
+
+```
+
+***MYSQL***
+
+```sql
+
+/*OFFSET 3 skips the first 3 rows.
+LIMIT 1 fetches the 4th row.*/
+
+SELECT ename, sal
+FROM emp
+ORDER BY sal
+LIMIT 1 OFFSET 3;
+```
+
