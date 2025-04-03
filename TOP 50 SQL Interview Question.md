@@ -294,3 +294,25 @@ ORDER BY sal
 LIMIT 1 OFFSET 3;
 ```
 
+
+# 8. UNION vs UNIONALL
+
+**UNION**
+
+Removes duplicate rows from the final result.
+Performs sorting internally to eliminate duplicates, making it slower compared to UNION ALL.
+Useful when you need a unique list of records.
+
+    ex : SELECT ename, sal FROM emp1
+    UNION
+    SELECT ename, sal FROM emp2;
+
+ **UNIONALL**
+
+Does not remove duplicates; keeps all records.
+Faster than UNION because it does not sort or filter duplicates.
+Useful when you need all data, including duplicates
+ex: 
+        SELECT ename, sal FROM emp1
+        UNION ALL
+        SELECT ename, sal FROM emp2;
