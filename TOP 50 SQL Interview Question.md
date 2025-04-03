@@ -239,3 +239,6 @@ SELECT ename
 FROM emp
 WHERE ename LIKE 'J%S';
 ```
+
+# 7. Display nth row in sql 
+
