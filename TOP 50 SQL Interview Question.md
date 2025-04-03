@@ -214,3 +214,28 @@ FROM emp
 WHERE ename LIKE '___M%';
 ```
 
+**3. Display the employee names and hire dates for the employee who joined the month of december**
+
+```sql
+SELECT ename,hiredate
+FROM emp
+WHERE hiredate LIKE '%DEC%';
+```
+
+**4. Display the employee names whose name contains exactly 1 'L's**
+
+Involve 2 LL , starting and ending can be anything
+
+```sql
+SELECT ename
+FROM emp
+WHERE ename LIKE '%LL%';
+```
+
+**5. Display the employee names whose name starts with 'J' and ends with 'S'**
+
+```sql
+SELECT ename
+FROM emp
+WHERE ename LIKE 'J%S';
+```
