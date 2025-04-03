@@ -76,6 +76,7 @@ Either you can explain Even or Odd numbers of record.
 You can select from pseudocolumns, but you cannot insert, update, or delete their values.
 
 1️⃣ What is ROWNUM?
+Assign sequential number satring from 1 to all records and it cannot used with * aastreik
 ROWNUM is a pseudocolumn in Oracle SQL that assigns a unique row number before sorting the data.
 It does not store values physically in the table.
 It is read-only and automatically generated when the query is executed.
