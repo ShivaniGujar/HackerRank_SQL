@@ -132,7 +132,7 @@ ORDER BY COUNT(*);
 
 **A. Display the employee name whose name starts with 'M'**
 
-% reprsent rest caan be anything
+  % reprsent rest caan be anything
 
 ```sql
 SELECT ename FROM emp
@@ -140,5 +140,77 @@ WHERE ename LIKE 'M%';
 ```
 
 
+**B. Display the employee name whose name ends with 'N'**
 
+  % reprsent rest caan be anything
+
+```sql
+SELECT ename FROM emp
+WHERE ename LIKE '%N';
+```
+
+**C. Display the employee name of all employee having 'M' in any position in there name**
+
+  diplay of emplyee whose have M in there name
+
+```sql
+SELECT ename FROM emp
+WHERE ename LIKE '%M%';
+```
+
+
+**D. Display the employee name of all employee does not contain 'M' in any position in there name**
+
+ 
+
+```sql
+SELECT ename FROM emp
+WHERE ename NOT LIKE '%M%';
+```
+
+
+# 6. Pattern Matching in SQL (Basics) LIKE Operator
+
+**1.Display the names of all employee whose name contain exactly 4 letters**
+
+  LIKE '____': The underscore (_) represents one character, and since we use four underscores, 
+  it ensures that only names with exactly 4 characters are selected
+
+```sql
+SELECT ename
+FROM emp
+WHERE ename LIKE '____';
+
+/*Query Using LENGTH(): LENGTH(ename) = 4: This checks if the number of characters in ename is exactly 4.*/
+
+SELECT ename 
+FROM emp 
+WHERE LENGTH(ename) = 4;
+
+
+
+```
+
+**2.Display the names of  employee whose name contain the**
+**(i) second letter as 'L'**
+
+_ (underscore) represents any single character.
+L is the second letter.
+% (percent) represents any sequence of characters after L.
+
+```sql
+SELECT ename
+FROM emp
+WHERE ename LIKE '_L%';
+```
+
+
+**(ii) Fourth letter as 'M'**
+
+
+```sql
+SELECT ename
+FROM emp
+WHERE ename LIKE '___M%';
+```
 
