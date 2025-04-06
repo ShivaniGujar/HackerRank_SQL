@@ -317,7 +317,20 @@ ex:
         UNION ALL
         SELECT ename, sal FROM emp2;
 
-# 9. Inner Join
+# 9. JOINS 
+
+**JOINS**
+A JOIN in SQL is used to combine rows from two or more tables based on a related column between them.
+
+JOIN        |       Type	What it Returns
+INNER       | JOIN	Only rows with matching keys in both tables
+LEFT        |  JOIN	All rows from the left table + matching from the right
+RIGHT       |  JOIN	All rows from the right table + matching from the left
+FULL        |  OUTER JOIN	All rows from both tables, matched where possible
+
+**INNER JOINS**
+
+INNER JOIN only includes records that have matching values in both tables.
 
 join is used combine data from multiple table, here data is combined base on equality condition
 We must have common column in both table with same data type
