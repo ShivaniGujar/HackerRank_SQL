@@ -319,42 +319,51 @@ ex:
 
 # 9. JOINS 
 
-**JOINS**
-A JOIN in SQL is used to combine rows from two or more tables based on a related column between them.
+What is a JOIN?
+A JOIN in SQL is used to combine rows from two or more tables based on a related column between them
+(usually a foreign key).
 
-JOIN        |       Type	What it Returns
-INNER       | JOIN	Only rows with matching keys in both tables
-LEFT        |  JOIN	All rows from the left table + matching from the right
-RIGHT       |  JOIN	All rows from the right table + matching from the left
-FULL        |  OUTER JOIN	All rows from both tables, matched where possible
+Types of SQL JOINs:
+INNER JOIN -> Only rows with matching keys in both tables
+LEFT JOIN -> All rows from the left table + matching from the right
+RIGHT JOIN -> All rows from the right table + matching from the left
+FULL JOIN -> All rows from both tables, matched where possible
 
-**INNER JOINS**
-
-INNER JOIN only includes records that have matching values in both tables.
-
-join is used combine data from multiple table, here data is combined base on equality condition
-We must have common column in both table with same data type
-Right table row is joined to left table row only if there is matching  for the left table row in right table row
-
-result will be only matching records /rows in both table
-
-**no of rows in result set of inner join**
-ans: no of rows values match with right table and match row with left table, if 5 match then 5 row will display
-
-***ex***
-1. Display employee who are working in location Chicago from emp and dept table
-   ```Sql
- SELECT ename,sal, d.deptnpo,dname,location
- FROM emp AS e, Dept as d
- WHERE e.deptno=d.deptno  AND loc='Chicago';
-   ```
-2.Display the department name and total salaries from each department***
+INNER JOIN
+- Returns only matching rows from both tables.
+- If no match, the row is excluded.
+- JOIN and INNER JOIN are the same
 
 ```sql
-SELECT dname,sum(sal)
-FROM emp AS e,dept AS d
-WHERE e.deptno=d.deptno
-GROUP BY deptno ;
-```
+Syntax:
+SELECT column_name(s)
+FROM table1
+INNER JOIN table2
+ON table1.common_column = table2.common_column;
 
+SELECT ProductID, ProductName, CategoryName
+FROM Products
+INNER JOIN Categories
+ON Products.CategoryID = Categories.CategoryID;
+
+/*Example 1: Employees in Chicago*/
+
+SELECT ename, sal, d.deptno, dname, loc
+FROM emp AS e, dept AS d
+WHERE e.deptno = d.deptno AND loc = 'Chicago';
+
+/*Example 2: Department-wise Total Salaries*/
+
+SELECT dname, SUM(sal)
+FROM emp AS e, dept AS d
+WHERE e.deptno = d.deptno
+GROUP BY d.dname;
+
+/*Joining 3 Tables*/
+
+SELECT Orders.OrderID, Customers.CustomerName, Shippers.ShipperName
+FROM ((Orders
+INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
+INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
+```
 # 10. SELF JOIN
