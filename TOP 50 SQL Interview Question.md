@@ -316,3 +316,32 @@ ex:
         SELECT ename, sal FROM emp1
         UNION ALL
         SELECT ename, sal FROM emp2;
+
+# 9. Inner Join
+
+join is used combine data from multiple table, here data is combined base on equality condition
+We must have common column in both table with same data type
+Right table row is joined to left table row only if there is matching  for the left table row in right table row
+
+result will be only matching records /rows in both table
+
+**no of rows in result set of inner join**
+ans: no of rows values match with right table and match row with left table, if 5 match then 5 row will display
+
+***ex***
+1. Display employee who are working in location Chicago from emp and dept table
+   ```Sql
+ SELECT ename,sal, d.deptnpo,dname,location
+ FROM emp AS e, Dept as d
+ WHERE e.deptno=d.deptno  AND loc='Chicago';
+   ```
+2.Display the department name and total salaries from each department***
+
+```sql
+SELECT dname,sum(sal)
+FROM emp AS e,dept AS d
+WHERE e.deptno=d.deptno
+GROUP BY deptno ;
+```
+
+# 10. SELF JOIN
