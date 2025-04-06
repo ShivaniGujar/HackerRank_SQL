@@ -367,3 +367,22 @@ INNER JOIN Customers ON Orders.CustomerID = Customers.CustomerID)
 INNER JOIN Shippers ON Orders.ShipperID = Shippers.ShipperID);
 ```
 # 10. SELF JOIN
+
+Joining a table with itself is called self join
+A self join is a regular join, but the table is joined with itself.
+Compared values with the values of same column of itself or different values with same table
+we need to create replica for same column as ALias
+
+```sql
+Syntax:
+SELECT column_name(s)
+FROM table1 T1, table1 T2
+WHERE condition;
+```
+
+**Display emplyee details who are getting more salary than theie manager salary**
+here have only one salary column
+**Display emplyee details who joined before there manageer**
+in here have only one date column
+
+
